@@ -38,7 +38,40 @@ On se kaz est une application web de location de maisons dans les Iles et DOM-TO
 
 ## Roadmap
 
+- API
+  - [ ] House
+    - [ ] Create
+    - [ ] Read
+    - [ ] Delete
+  - [ ] Reserve
+    - [ ] Create
+    - [ ] Read
+    - [ ] Delete
+  - [ ] 
 
+- FRONT
+  - [ ] Home
+    - [ ] Logout
+    - [ ] Map
+    - [ ] Carroussel de 3 maisons
+    - [ ] Barre de recherches
+    - [ ] Filtre
+      - [ ] Prix
+      - [ ] Localisation
+      - [ ] Date de réservation
+  - [ ] Details
+    - [ ] Descriptif de la maison
+    - [ ] Photos
+    - [ ] Prix
+    - [ ] Bouton réservation
+      - [ ] Modal avec calendar
+  - [ ] Profil
+    - [ ] Username
+    - [ ] Mail
+    - [ ] Reservations
+  - [ ] Authentification
+    - [ ] Login
+    - [ ] Register
 
 ## Credits
 
