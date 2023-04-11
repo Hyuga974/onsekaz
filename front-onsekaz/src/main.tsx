@@ -1,10 +1,22 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
+import './index.css';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './config/router';
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+
+// const App: React.FC = () => {
+//   return (
+//     <div>
+//       <h1>Annonces</h1>
+//       <CardsList cards={[a, b]} />
+//       {/* <CardItem annonce={a} /> appeler votre composant avec l'annonce exemple */}
+//     </div>
+//   );
+// };
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+<React.StrictMode>
+    <RouterProvider router={router} />
+</React.StrictMode>,
 )
