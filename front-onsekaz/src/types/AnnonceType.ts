@@ -7,9 +7,9 @@ export interface AnnonceT {
     rooms_nb: Number,
     beds_nb: Number,
     br_number: Number,
-    property: property,
-    type: type,
+    property: propertyHouse,
+    type: typeHouse,
     max_customer: Number,
     description: string,
-    photos: [string],
+    photos: string[],
 }
