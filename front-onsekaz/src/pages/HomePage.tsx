@@ -43,7 +43,7 @@ let a: AnnonceT = {
 const HomePage: React.FC = () => (
   <div className="container mx-auto">
     <Title text="On se Kaze" />
-    <CarouselComponent images={[a.photos, b.photos]} />
+    {/* <CarouselComponent images={[a.photos, b.photos]} /> */}
     <Link to="/profils">
       Me
     </Link>
