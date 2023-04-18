@@ -6,15 +6,10 @@ type CardProps = {
 };
 
 const CardItem: React.FC<CardProps> = ({ annonce }) => (
-<<<<<<< HEAD
-<div className="card w-full bg-base-300 shadow-xl">
-  <figure><img src={annonce.photos[0]} alt="Appartement" /></figure>
-=======
 <div className="card w-96 h-96  bg-base-300 shadow-xl">
   <figure>
     <CarouselComponent images={annonce.photos} />
   </figure>
->>>>>>> refs/remotes/origin/main
   <div className="card-body">
     <h2 className="card-title underline-offset-0">
       {annonce.title}
