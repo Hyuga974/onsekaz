@@ -20,7 +20,7 @@ let a: AnnonceT = {
     property: 'appartement',
     type: 'full_housing',
     max_customer: 6,
-    photos: ['https://example.com/image.jpg'],
+    photos: ['https://www.milletoursreceptifreunion.com/images/upload/receptif/box-seo/chambres-hotes-reunion.jpeg'],
   };
   let b: AnnonceT = {
     id: 2,
@@ -35,7 +35,7 @@ let a: AnnonceT = {
     property: 'appartement',
     type: 'full_housing',
     max_customer: 6,
-    photos: ["https://example.com/image.jpg"],
+    photos: ["https://images.unsplash.com/photo-1580910727537-e4c80c6a6a29?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"],
   };
   
 
@@ -47,6 +47,7 @@ const HomePage: React.FC = () => (
     <Link to="/profils">
       Me
     </Link>
+    <CardsList cards={[a, b]}/>
 
   </div>
 );

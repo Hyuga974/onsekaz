@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import { AnnonceT } from '../types/AnnonceType';
-import CardItem from './Card';
+import CardItem from './CardItem';
 
 interface Props {
   cards: AnnonceT[];

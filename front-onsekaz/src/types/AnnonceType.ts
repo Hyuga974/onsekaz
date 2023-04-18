@@ -10,6 +10,6 @@ export interface AnnonceT {
     property: property,
     type: type,
     max_customer: Number,
-    description: String,
-    photos: [String],
+    description: string,
+    photos: [string],
 }
