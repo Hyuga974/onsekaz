@@ -1,11 +1,11 @@
-enum property {
-    house,
-    appartement,
-    guest_house,
-    hotel
+export enum propertyHouse {
+    house = "maison",
+    appartement = "appartement",
+    guest_house = "maison d'hôte",
+    hotel = "hôtel"
 }
 
-enum type {
-    full_housing,
-    private_room
+export enum typeHouse {
+    full_housing = "logement entier",
+    private_room = "chambre privé"
 }

@@ -11,8 +11,7 @@ const CardsList: React.FC<Props> = ({ cards }) => {
   return (
     <div className="grid grid-cols-3 gap-4 my-4">
       {cards.map((card) => (
-        <div>
-        <p>New card</p>
+        <div className="grid grid-flow-row-dense">
         <CardItem key={card.id} annonce={card} />
 
         </div>
