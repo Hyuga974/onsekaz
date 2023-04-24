@@ -6,6 +6,7 @@ import { AnnonceT } from '../types/AnnonceType';
 import Title from '../components/Title';
 import {propertyHouse, typeHouse} from '../types/AnnonceEnum'
 import CarouselComponent from '../components/Carousel';
+import Navbar from '../components/Navbar';
 
 // Créer une annonce exemple à utiliser avec le composant CardItem
 let a: AnnonceT = {
@@ -66,6 +67,8 @@ let a: AnnonceT = {
 
 
 const HomePage: React.FC = () => (
+  <div>
+    <Navbar images={[]} />
   <div className="container mx-auto text-3xl font-bold underline">
     <Title text="On se Kaze" />
     {/* <CarouselComponent images={[a.photos, b.photos]} /> */}
@@ -74,6 +77,7 @@ const HomePage: React.FC = () => (
     </Link>
     <CardsList cards={[a, b, c]}/>
 
+  </div>
   </div>
 );
 
