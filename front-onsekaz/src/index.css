@@ -3195,6 +3195,10 @@ html {
   gap: 1rem;
 }
 
+.rounded {
+  border-radius: 0.25rem;
+}
+
 .bg-base-100 {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--b1) / var(--tw-bg-opacity));
@@ -3208,6 +3212,38 @@ html {
 .bg-base-300 {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--b3, var(--b2)) / var(--tw-bg-opacity));
+}
+
+.bg-gray-300\/90 {
+  background-color: rgb(209 213 219 / 0.9);
+}
+
+.bg-gray-900\/60 {
+  background-color: rgb(17 24 39 / 0.6);
+}
+
+.bg-gray-300\/40 {
+  background-color: rgb(209 213 219 / 0.4);
+}
+
+.bg-gray-300\/100 {
+  background-color: rgb(209 213 219 / 1);
+}
+
+.bg-gray-300\/10 {
+  background-color: rgb(209 213 219 / 0.1);
+}
+
+.bg-gray-100\/10 {
+  background-color: rgb(243 244 246 / 0.1);
+}
+
+.bg-gray-100\/30 {
+  background-color: rgb(243 244 246 / 0.3);
+}
+
+.bg-white\/30 {
+  background-color: rgb(255 255 255 / 0.3);
 }
 
 .fill-current {
@@ -3246,6 +3282,11 @@ html {
   text-transform: none;
 }
 
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration-line: underline;
 }
@@ -3264,6 +3305,13 @@ html {
   --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
 
 .logo {
@@ -3303,14 +3351,4 @@ html {
 
 .read-the-docs {
   color: #888;
-}
-
-@media (min-width: 1024px) {
-  .lg\:flex {
-    display: flex;
-  }
-
-  .lg\:hidden {
-    display: none;
-  }
 }

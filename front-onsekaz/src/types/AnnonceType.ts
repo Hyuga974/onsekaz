@@ -1,3 +1,5 @@
+import { propertyHouse, typeHouse } from "./AnnonceEnum";
+
 export interface AnnonceT {
     id: number;
     title: String,
