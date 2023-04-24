@@ -1,20 +1,70 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import CardsList from '../components/CardsList';
 import { AnnonceT } from '../types/AnnonceType';
 import Title from '../components/Title';
 import CarouselComponent from '../components/Carousel';
+import { propertyHouse, typeHouse } from '../types/AnnonceEnum';
+import Navbar from '../components/Navbar';
 
+const annonce : AnnonceT = {
+  id : 3,
+  title: "Parenthèse ensoleillée",
+  location: 0,
+  latitude: 0,
+  description: `Situé aux Avirons La Parenthèse Ensoleillée, vous accueille pour votre séjour. Idéalement située à 8 minutes de la plage de l'Etang Salé et 15 minutes du petit village du Tévelave où les amateurs de randonnée et de beaux paysages pourront trouver leurs bonheurs.
 
-const DetailsPage: React.FC = () => (
-  <div className="container mx-auto text-3xl font-bold underline">
-    <Title text="On se Kaze" />
-    <Link to="/profils">
-      Me
-    </Link>
+  Logement jumelée à celle des propriétaires.
+  Joliment décorée, le logement est moderne, fonctionnel et entièrement privatif. Il dispose d'une grande terrasse et d'un jaccuzzi privé de quoi vous ravir pendant vos vacances.`,
+  price: 90,
+  rooms_nb: 1,
+  beds_nb: 2,
+  br_number: 1,
+  property: propertyHouse.house,
+  type: typeHouse.full_housing,
+  max_customer: 4,
+  photos:[
+    "https://a0.muscache.com/im/pictures/miso/Hosting-704982674479340325/original/76c5f458-8c8f-4f91-8fed-6ca591a55d01.jpeg?im_w=1200",
+    "https://a0.muscache.com/im/pictures/miso/Hosting-704982674479340325/original/d832a3f7-6fa1-4585-bdd4-2d7fe59dbf12.jpeg?im_w=720",
+    "https://a0.muscache.com/im/pictures/miso/Hosting-704982674479340325/original/2b6d7787-944b-4f13-8975-2d59b068cf13.jpeg?im_w=720",
+    "https://a0.muscache.com/im/pictures/miso/Hosting-704982674479340325/original/6e5154f5-021d-4cb0-83d5-dc2d967e1a94.jpeg?im_w=720",
+    "https://a0.muscache.com/im/pictures/miso/Hosting-704982674479340325/original/eaf44297-0130-4f77-8b98-78cbe6fffbe1.jpeg?im_w=1200"
+  ]
+}
 
-  </div>
-);
+interface Props {
+
+}
+
+const DetailsPage: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  // const [state] = useContext(AnnonceContext);
+  // const annonce = state.annonces.find((n) => n.id === id);
+  
+
+  return (
+    <div>
+      <Navbar images={[]} />
+      <div className="mx-auto text-3xl font-bold underline">
+        <Title text="On se Kaze" />
+          <h2 className="underline-offset-0">
+            {annonce.title}
+            <div className="badge badge-secondary">NEW</div>
+          </h2>
+          <div className="grid flex-grow grid-rows-3 grid-flow-col gap-2">
+            <div className="row-span-3">01</div>
+            <div className="col-span-2">02</div>
+            <div className="row-span-2 col-span-2">03</div>
+          </div>
+          <div className="card-actions flex flex-grow">
+            <div className="badge badge-outline"><strong>Prix:</strong> {annonce.price.toString()} €</div>
+            <div className="badge badge-outline"><strong>Maximum de clients:</strong> {annonce.max_customer.toString()}</div>
+          </div>
+        </div>
+      </div>
+  )
+  
+}
 
 export default DetailsPage;

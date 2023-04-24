@@ -9,9 +9,9 @@ interface Props {
 
 const CardsList: React.FC<Props> = ({ cards }) => {
   return (
-    <div className="grid grid-cols-3 gap-4 my-4">
+    <div className="flex flex-wrap -mx-4">
       {cards.map((card) => (
-        <div className="grid grid-flow-row-dense">
+        <div className="w-full md:w-1/2 lg:w-1/4 px-4 my-2 ">
         <CardItem key={card.id} annonce={card} />
 
         </div>

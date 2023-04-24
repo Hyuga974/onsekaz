@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 interface NavbarProps {
     images: string[];
 }
@@ -7,7 +8,7 @@ const Navbar: React.FC<NavbarProps> = ({ images }) => {
   return (
     <div className="navbar bg-base-200">
         <div className="navbar-start">
-            <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+            <a className="btn btn-ghost normal-case text-xl" href='/'>On se Kaze</a>
         </div>
         <div className="navbar-center flex">
             <ul className="menu menu-horizontal px-1">
@@ -24,6 +25,11 @@ const Navbar: React.FC<NavbarProps> = ({ images }) => {
                     </div>
                 </div>
             </ul>
+        </div>
+        <div>
+            <Link to="/profils">
+                Me
+            </Link>
         </div>
         <div className="navbar-end">
             <a className="btn">Get started</a>
