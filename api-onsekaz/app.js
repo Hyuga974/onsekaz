@@ -17,9 +17,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// start server
+//start server
+
 app.listen(3000, () => {
-    console.log("Server is listening on port 3000");
+    console.log('Server started on port 3000...');
 });
 
 module.exports = app;
