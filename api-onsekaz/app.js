@@ -1,13 +1,19 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const cors = require('cors');
+const db = require('./config/database.config');
+const authCheckMiddleware = require('./middleware/authentication.check');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
-var app = express();
+const indexRouter = require('./routes/index');
+const authentificationRouter = require('./routes/auth');
+const userRouter = require('./routes/user');
 
+const app = express();
+
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -15,9 +21,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/auth', authentificationRouter);
 
-//start server
+//protected routes
+app.use('/profile', authCheckMiddleware, userRouter);
 
 app.listen(3000, () => {
     console.log('Server started on port 3000...');
