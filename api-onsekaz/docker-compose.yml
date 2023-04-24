@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  mongo:
+    image: mongo:latest
+    volumes:
+      - "./mongo/data:/data/db"
+    ports: 
+      - "27017:27017"
+    environment: 
+      - MONGO_INITDB_ROOT_USERNAME=api
+      - MONGO_INITDB_ROOT_PASSWORD=docker1234
+
+# server URI : mongodb://api:docker1234@localhost:27017/
