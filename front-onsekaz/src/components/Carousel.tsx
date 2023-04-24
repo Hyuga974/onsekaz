@@ -8,20 +8,11 @@ const CarouselComponent: React.FC<CarouselProps> = ({ images }) => {
   const [current, setCurrent] = React.useState(0);
 
   function previous(){
-    if (current - 1 < 0){
-      setCurrent(images.length - 1);
-    } else {
-      setCurrent(current - 1)
-    }
+      setCurrent(current - 1 < 0 ? images.length - 1 : current - 1)
   }
 
   function next(){
-    if (current === images.length - 1){
-      setCurrent(0)
-    }else {
-      setCurrent(current + 1);
-
-    }
+      setCurrent(current === images.length - 1 ? 0 : current + 1)
   }
   return (
     <div>
@@ -29,8 +20,8 @@ const CarouselComponent: React.FC<CarouselProps> = ({ images }) => {
             <div key = {current} id={"slide-" + current} className="carousel-item relative w-full">
               <img src={images[current]} className="w-full" />
               <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                <button onClick={previous} className="btn btn-circle">❮</button> 
-                <button onClick={next} className="btn btn-circle">❯</button>
+                <button onClick={previous} className="btn btn-circle border-gray-400 text-black hover:text-white backdrop-blur-md bg-white/30 ">❮</button> 
+                <button onClick={next} className="btn btn-circle border-gray-400 text-black hover:text-white backdrop-blur-md bg-white/30 ">❯</button>
               </div>
             </div> 
           </div>

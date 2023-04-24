@@ -10,11 +10,9 @@ import CarouselComponent from '../components/Carousel';
 const DetailsPage: React.FC = () => (
   <div className="container mx-auto text-3xl font-bold underline">
     <Title text="On se Kaze" />
-    {/* <CarouselComponent images={[a.photos, b.photos]} /> */}
     <Link to="/profils">
       Me
     </Link>
-    <CardsList cards={[a, b]}/>
 
   </div>
 );
