@@ -52,16 +52,20 @@ const DetailsPage: React.FC = () => {
           <div className="badge badge-secondary">NEW</div>
         </h2>
       </div>
-      <div className="flex flex-wrap -mx-4">
-          <img src={annonce.photos[0]} className="h-full "/>
-          
-          <img src={annonce.photos[1]} className="w-full"/>
-          
-          <img src={annonce.photos[2]} className="w-full"/>
-          
-          <img src={annonce.photos[3]} className="w-full"/>
-          
-          <img src={annonce.photos[4]} className="w-full"/>
+      <div className="flex flex-wrap m-4 space-x-2">
+        <div className="flex">
+          <img src={annonce.photos[0]} className="object-cover rounded-md" style={{width: "800px", height: "600px"}} />
+        </div>
+        <div className="flex flex-col space-y-2">
+          <div className="flex space-x-2">
+            <img src={annonce.photos[1]} className="object-cover rounded-md" style={{width: "300px", height: "300px"}} />
+            <img src={annonce.photos[2]} className="object-cover rounded-md" style={{width: "300px", height: "300px"}} />
+          </div>
+          <div className="flex space-x-2">
+            <img src={annonce.photos[3]} className="object-cover rounded-md" style={{width: "300px", height: "300px"}} />
+            <img src={annonce.photos[4]} className="object-cover rounded-md" style={{width: "300px", height: "300px"}} />
+          </div>
+        </div>
       </div>
       <div className="card-actions flex flex-grow">
         <div className="badge badge-outline">

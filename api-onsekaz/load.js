@@ -36,7 +36,7 @@ const emptyCollections = async () => {
 const createUsers = async () => {
     console.log(`Creating users...`);
     const users = [];
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 50; i++) {
         const user = new User({
             email: faker.internet.email(),
             password: bcrypt.hashSync(faker.internet.password(), 10),
@@ -52,15 +52,15 @@ const createAnnonces = async () => {
     console.log(`Creating annonces...`);
     const annonces = [];
     const users = await User.find();
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 50; i++) {
         const annonce = new Annonce({
             // link to user
             user: users[i]._id,
             // annonce data
             title: faker.lorem.sentence(),
             location: faker.address.city(),
-            latitude: faker.address.latitude(),
-            longitude: faker.address.longitude(),
+            latitude: faker.address.latitude(-20.7, -21.4),
+            longitude: faker.address.longitude(55.85, 55.15),
             price: faker.finance.amount(),
             rooms_nb: faker.datatype.number({ min: 1, max: 5 }),
             beds_nb: faker.datatype.number({ min: 1, max: 5 }),
