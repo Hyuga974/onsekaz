@@ -41,30 +41,65 @@ const DetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   // const [state] = useContext(AnnonceContext);
   // const annonce = state.annonces.find((n) => n.id === id);
-  
 
   return (
     <div>
       <Navbar images={[]} />
       <div className="mx-auto text-3xl font-bold underline">
         <Title text="On se Kaze" />
-          <h2 className="underline-offset-0">
-            {annonce.title}
-            <div className="badge badge-secondary">NEW</div>
-          </h2>
-          <div className="grid flex-grow grid-rows-3 grid-flow-col gap-2">
-            <div className="row-span-3">01</div>
-            <div className="col-span-2">02</div>
-            <div className="row-span-2 col-span-2">03</div>
-          </div>
-          <div className="card-actions flex flex-grow">
-            <div className="badge badge-outline"><strong>Prix:</strong> {annonce.price.toString()} €</div>
-            <div className="badge badge-outline"><strong>Maximum de clients:</strong> {annonce.max_customer.toString()}</div>
-          </div>
+        <h2 className="underline-offset-0">
+          {annonce.title}
+          <div className="badge badge-secondary">NEW</div>
+        </h2>
+      </div>
+      <div className="flex flex-wrap -mx-4">
+          <img src={annonce.photos[0]} className="h-full "/>
+          
+          <img src={annonce.photos[1]} className="w-full"/>
+          
+          <img src={annonce.photos[2]} className="w-full"/>
+          
+          <img src={annonce.photos[3]} className="w-full"/>
+          
+          <img src={annonce.photos[4]} className="w-full"/>
+      </div>
+      <div className="card-actions flex flex-grow">
+        <div className="badge badge-outline">
+          <strong>Prix :</strong> {annonce.price.toString()} €
+        </div>
+        <div className="badge badge-outline">
+          <strong>Maximum de clients :</strong>{" "}
+          {annonce.max_customer.toString()}
+        </div>
+        <div className="badge badge-outline">
+          <strong>Nombre de chambres :</strong>{" "}
+          {annonce.rooms_nb.toString()}
+        </div>
+        <div className="badge badge-outline">
+          <strong>Nombre de lits :</strong> {annonce.beds_nb.toString()}
+        </div>
+        <div className="badge badge-outline">
+          <strong>Nombre de salles de bain :</strong>{" "}
+          {annonce.br_number.toString()}
+        </div>
+        <div className="badge badge-outline">
+          <strong>Type de propriété :</strong> {annonce.property}
+        </div>
+        <div className="badge badge-outline">
+          <strong>Type de maison :</strong> {annonce.type}
+        </div>
+        <div className="badge badge-outline">
+          <strong>Localisation :</strong> {annonce.location.toString()}
+        </div>
+        <div className="badge badge-outline">
+          <strong>Latitude :</strong> {annonce.latitude.toString()}
+        </div>
+        <div className="badge badge-outline">
+          <strong>Description :</strong> {annonce.description}
         </div>
       </div>
-  )
-  
-}
+    </div>
+  );
+};
 
 export default DetailsPage;
