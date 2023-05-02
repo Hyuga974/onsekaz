@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import HomePage from '../pages/HomePage'
 import DetailsPage from '../pages/DetailsPage';
+import MapPage from '../pages/MapPage';
 
 export const router = createBrowserRouter([
   {
@@ -10,5 +11,9 @@ export const router = createBrowserRouter([
   {
     path: '/annonce/:id',
       element: <DetailsPage />
+  },
+  {
+    path: '/map',
+    element: <MapPage />
   }
 ]);
