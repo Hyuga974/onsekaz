@@ -10,6 +10,7 @@ const authCheckMiddleware = require('./middleware/authentication.check');
 const indexRouter = require('./routes/index');
 const authentificationRouter = require('./routes/auth');
 const userRouter = require('./routes/user');
+const annonceRouter = require('./routes/annonce');
 
 const app = express();
 
@@ -25,6 +26,9 @@ app.use('/auth', authentificationRouter);
 
 //protected routes
 app.use('/profile', authCheckMiddleware, userRouter);
+
+//semi-protected routes
+app.use('/annonces', annonceRouter);
 
 app.listen(3000, () => {
     console.log('Server started on port 3000...');

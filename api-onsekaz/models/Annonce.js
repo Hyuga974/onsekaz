@@ -6,8 +6,9 @@ const annonceSchema = new mongoose.Schema({
         ref: 'User'
     },
     title: String,
-    location: Number,
+    location: String,
     latitude: Number,
+    longitude: Number,
     price: Number,
     rooms_nb: Number,
     beds_nb: Number,
