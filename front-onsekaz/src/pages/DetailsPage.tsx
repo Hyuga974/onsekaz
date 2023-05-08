@@ -6,12 +6,14 @@ import { AnnonceT } from '../types/AnnonceType';
 import Title from '../components/Title';
 import CarouselComponent from '../components/Carousel';
 import { propertyHouse, typeHouse } from '../types/AnnonceEnum';
-import Navbar from '../components/Navbar';
+import Header from '../components/Header';
+import StarRating from '../components/StarRating';
 
 const annonce : AnnonceT = {
   id : 3,
   title: "Parenthèse ensoleillée",
-  location: 0,
+  location: "Les Avirons",
+  longitude: 0,
   latitude: 0,
   description: `Situé aux Avirons La Parenthèse Ensoleillée, vous accueille pour votre séjour. Idéalement située à 8 minutes de la plage de l'Etang Salé et 15 minutes du petit village du Tévelave où les amateurs de randonnée et de beaux paysages pourront trouver leurs bonheurs.
 
@@ -42,65 +44,131 @@ const DetailsPage: React.FC = () => {
   // const [state] = useContext(AnnonceContext);
   // const annonce = state.annonces.find((n) => n.id === id);
 
+  const user = {
+    id: '1',
+    email: 'john@example.com',
+    username: 'John Doe',
+  };
+
+  const reviews = [
+    {
+      id: '1',
+      user: 'Jane Doe',
+      score: 3,
+      content: 'Great place! I had a wonderful time staying here.',
+    },
+    {
+      id: '2',
+      user: 'Michael',
+      score: 5,
+      content: 'Nice house, but the location is a bit far from the city center.',
+    },
+    {
+      id: '3',
+      user: 'Jane Doe',
+      score: 4,
+      content: 'Great place! I had a wonderful time staying here.',
+    }
+  ];
+
+  //calculate average score
+  const averageScore = reviews.reduce((acc, review) => acc + review.score, 0) / reviews.length;
+
+
   return (
     <div>
-      <Navbar images={[]} />
-      <div className="mx-auto text-3xl font-bold underline">
-        <Title text="On se Kaze" />
-        <h2 className="underline-offset-0">
-          {annonce.title}
-          <div className="badge badge-secondary">NEW</div>
-        </h2>
-      </div>
-      <div className="flex flex-wrap m-4 space-x-2">
-        <div className="flex">
-          <img src={annonce.photos[0]} className="object-cover rounded-md" style={{width: "800px", height: "600px"}} />
-        </div>
-        <div className="flex flex-col space-y-2">
-          <div className="flex space-x-2">
-            <img src={annonce.photos[1]} className="object-cover rounded-md" style={{width: "300px", height: "300px"}} />
-            <img src={annonce.photos[2]} className="object-cover rounded-md" style={{width: "300px", height: "300px"}} />
+      <Header />
+      <div className="container mx-auto px-4 py-8">
+        <div className="lg:flex mb-4">
+          <div className="lg:w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 h-96">
+              <div className="relative">
+                <img src={annonce.photos[0]} alt={annonce.title} className="rounded-lg w-full h-96 object-cover" />
+              </div>
+              <div className="flex flex-col h-96">
+                <div className="flex flex-row h-1/2">
+                  <div className="flex-1 p-1 relative">
+                    <img src={annonce.photos[1]} alt={`${annonce.title}-1`}
+                      className="rounded-lg w-full h-full object-cover" />
+                  </div>
+                  <div className="flex-1 p-1 relative">
+                    <img src={annonce.photos[2]} alt={`${annonce.title}-2`}
+                      className="rounded-lg w-full h-full object-cover" />
+                  </div>
+                </div>
+                <div className="flex flex-row h-1/2">
+                  <div className="flex-1 p-1 relative">
+                    <img src={annonce.photos[3]} alt={`${annonce.title}-1`}
+                      className="rounded-lg w-full h-full object-cover" />
+                  </div>
+                  <div className="flex-1 p-1 relative">
+                    <img src={annonce.photos[4]} alt={`${annonce.title}-2`}
+                      className="rounded-lg w-full h-full object-cover" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="flex space-x-2">
-            <img src={annonce.photos[3]} className="object-cover rounded-md" style={{width: "300px", height: "300px"}} />
-            <img src={annonce.photos[4]} className="object-cover rounded-md" style={{width: "300px", height: "300px"}} />
+        </div>
+        <div className="lg:pl-8">
+          <h1 className="text-3xl font-bold mb-4">{annonce.title} • <StarRating score={averageScore} reviewId='annonce' /> ({averageScore})</h1>
+          <p className="text-xl mb-4">{annonce.location}</p>
+          <p className="text-gray-600 mb-4">{annonce.description}</p>
+          <section className="my-8">
+            <h2 className="text-2xl font-semibold">Hosted by {user.username}</h2>
+            <p>Email: {user.email}</p>
+          </section>
+          <div className="flex items-center space-x-4 mb-4">
+            <div>
+              <p className="font-bold">{annonce.price}€</p>
+              <p>per night</p>
+            </div>
+            <div>
+              <p className="font-bold">{annonce.rooms_nb}</p>
+              <p>Rooms</p>
+            </div>
+            <div>
+              <p className="font-bold">{annonce.beds_nb}</p>
+              <p>Beds</p>
+            </div>
+            <div>
+              <p className="font-bold">{annonce.br_number}</p>
+              <p>Bathrooms</p>
+            </div>
+          </div>
+          <div className="space-y-2">
+            <p>
+              <span className="font-bold">Property: </span>
+              {annonce.property}
+            </p>
+            <p>
+              <span className="font-bold">Type: </span>
+              {annonce.type}
+            </p>
+            <p>
+              <span className="font-bold">Max guests: </span>
+              {annonce.max_customer}
+            </p>
           </div>
         </div>
-      </div>
-      <div className="card-actions flex flex-grow">
-        <div className="badge badge-outline">
-          <strong>Prix :</strong> {annonce.price.toString()} €
+
+        <section className="my-8">
+        <h2 className="text-2xl font-semibold">Reviews</h2>
+        <div className="space-y-4">
+          {reviews.map((review) => (
+            <div key={review.id} className="card-bordered w-full mx-auto border-gray-400 rounded-md mt-4">
+              <div className="card-body">
+                <h2 className="card-title">
+                  {review.user} • <StarRating score={review.score} reviewId={review.id} />
+                </h2>
+                <p className="text-sm text-white">
+                  {review.content}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
-        <div className="badge badge-outline">
-          <strong>Maximum de clients :</strong>{" "}
-          {annonce.max_customer.toString()}
-        </div>
-        <div className="badge badge-outline">
-          <strong>Nombre de chambres :</strong>{" "}
-          {annonce.rooms_nb.toString()}
-        </div>
-        <div className="badge badge-outline">
-          <strong>Nombre de lits :</strong> {annonce.beds_nb.toString()}
-        </div>
-        <div className="badge badge-outline">
-          <strong>Nombre de salles de bain :</strong>{" "}
-          {annonce.br_number.toString()}
-        </div>
-        <div className="badge badge-outline">
-          <strong>Type de propriété :</strong> {annonce.property}
-        </div>
-        <div className="badge badge-outline">
-          <strong>Type de maison :</strong> {annonce.type}
-        </div>
-        <div className="badge badge-outline">
-          <strong>Localisation :</strong> {annonce.location.toString()}
-        </div>
-        <div className="badge badge-outline">
-          <strong>Latitude :</strong> {annonce.latitude.toString()}
-        </div>
-        <div className="badge badge-outline">
-          <strong>Description :</strong> {annonce.description}
-        </div>
+      </section>
       </div>
     </div>
   );

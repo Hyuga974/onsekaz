@@ -9,7 +9,7 @@ interface Props {
 
 const CardsList: React.FC<Props> = ({ cards }) => {
   return (
-    <div className="flex flex-wrap -mx-4">
+    <div className="flex flex-wrap -mx-auto">
       {cards.map((card) => (
         <div className="w-full md:w-1/2 lg:w-1/4 px-4 my-2 ">
         <CardItem key={card.id} annonce={card} />

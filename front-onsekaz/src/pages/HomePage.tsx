@@ -6,13 +6,15 @@ import { AnnonceT } from '../types/AnnonceType';
 import Title from '../components/Title';
 import {propertyHouse, typeHouse} from '../types/AnnonceEnum'
 import CarouselComponent from '../components/Carousel';
-import Navbar from '../components/Navbar';
+import Header from '../components/Header';
+import Hero from '../components/Hero';
 
 // Créer une annonce exemple à utiliser avec le composant CardItem
 let a: AnnonceT = {
     id: 1,
     title: "Annonce 1",
-    location: 0,
+    location: "Saint-Pierre",
+    longitude: 0,
     latitude: 0,
     description: "Description de l'annonce 1",
     price: 100,
@@ -27,7 +29,8 @@ let a: AnnonceT = {
   let b: AnnonceT = {
     id: 2,
     title: "Annonce 1",
-    location: 0,
+    location: "Saint-Pierre",
+    longitude: 0,
     latitude: 0,
     description: "Description de l'annonce 1",
     price: 100,
@@ -42,7 +45,8 @@ let a: AnnonceT = {
   const c : AnnonceT = {
     id : 3,
     title: "Parenthèse ensoleillée",
-    location: 0,
+    location: "Saint-Pierre",
+    longitude: 0,
     latitude: 0,
     description: `Situé aux Avirons La Parenthèse Ensoleillée, vous accueille pour votre séjour. Idéalement située à 8 minutes de la plage de l'Etang Salé et 15 minutes du petit village du Tévelave où les amateurs de randonnée et de beaux paysages pourront trouver leurs bonheurs.
 
@@ -66,7 +70,8 @@ let a: AnnonceT = {
   const d : AnnonceT = {
     id : 3,
     title: "Parenthèse ensoleillée",
-    location: 0,
+    location: "Saint-Pierre",
+    longitude: 0,
     latitude: 0,
     description: `Situé aux Avirons La Parenthèse Ensoleillée, vous accueille pour votre séjour. Idéalement située à 8 minutes de la plage de l'Etang Salé et 15 minutes du petit village du Tévelave où les amateurs de randonnée et de beaux paysages pourront trouver leurs bonheurs.
 
@@ -90,7 +95,8 @@ let a: AnnonceT = {
   const e : AnnonceT = {
     id : 3,
     title: "Parenthèse ensoleillée",
-    location: 0,
+    location: "Saint-Pierre",
+    longitude: 0,
     latitude: 0,
     description: `Situé aux Avirons La Parenthèse Ensoleillée, vous accueille pour votre séjour. Idéalement située à 8 minutes de la plage de l'Etang Salé et 15 minutes du petit village du Tévelave où les amateurs de randonnée et de beaux paysages pourront trouver leurs bonheurs.
 
@@ -114,7 +120,8 @@ let a: AnnonceT = {
   const f : AnnonceT = {
     id : 3,
     title: "Parenthèse ensoleillée",
-    location: 0,
+    location: "Saint-Pierre",
+    longitude: 0,
     latitude: 0,
     description: `Situé aux Avirons La Parenthèse Ensoleillée, vous accueille pour votre séjour. Idéalement située à 8 minutes de la plage de l'Etang Salé et 15 minutes du petit village du Tévelave où les amateurs de randonnée et de beaux paysages pourront trouver leurs bonheurs.
 
@@ -138,7 +145,8 @@ let a: AnnonceT = {
   const g : AnnonceT = {
     id : 3,
     title: "Parenthèse ensoleillée",
-    location: 0,
+    location: "Saint-Pierre",
+    longitude: 0,
     latitude: 0,
     description: `Situé aux Avirons La Parenthèse Ensoleillée, vous accueille pour votre séjour. Idéalement située à 8 minutes de la plage de l'Etang Salé et 15 minutes du petit village du Tévelave où les amateurs de randonnée et de beaux paysages pourront trouver leurs bonheurs.
 
@@ -162,7 +170,8 @@ let a: AnnonceT = {
   const h : AnnonceT = {
     id : 3,
     title: "Parenthèse ensoleillée",
-    location: 0,
+    location: "Saint-Pierre",
+    longitude: 0,
     latitude: 0,
     description: `Situé aux Avirons La Parenthèse Ensoleillée, vous accueille pour votre séjour. Idéalement située à 8 minutes de la plage de l'Etang Salé et 15 minutes du petit village du Tévelave où les amateurs de randonnée et de beaux paysages pourront trouver leurs bonheurs.
 
@@ -186,7 +195,8 @@ let a: AnnonceT = {
   const i : AnnonceT = {
     id : 3,
     title: "Parenthèse ensoleillée",
-    location: 0,
+    location: "Saint-Pierre",
+    longitude: 0,
     latitude: 0,
     description: `Situé aux Avirons La Parenthèse Ensoleillée, vous accueille pour votre séjour. Idéalement située à 8 minutes de la plage de l'Etang Salé et 15 minutes du petit village du Tévelave où les amateurs de randonnée et de beaux paysages pourront trouver leurs bonheurs.
 
@@ -210,7 +220,8 @@ let a: AnnonceT = {
   const j : AnnonceT = {
     id : 3,
     title: "Parenthèse ensoleillée",
-    location: 0,
+    location: "Saint-Pierre",
+    longitude: 0,
     latitude: 0,
     description: `Situé aux Avirons La Parenthèse Ensoleillée, vous accueille pour votre séjour. Idéalement située à 8 minutes de la plage de l'Etang Salé et 15 minutes du petit village du Tévelave où les amateurs de randonnée et de beaux paysages pourront trouver leurs bonheurs.
 
@@ -235,14 +246,20 @@ let a: AnnonceT = {
 
 
 const HomePage: React.FC = () => (
-  <div>
-    <Navbar images={[]} />
-  <div className="container mx-auto text-3xl font-bold underline">
-    {/* <CarouselComponent images={[a.photos, b.photos]} /> */}
-    <CardsList cards={[a, b, c, d, e, f, g, h, i, j]}/>
-
-  </div>
-  </div>
+    <div className="font-sans min-h-screen">
+      <Header />
+      <main>
+        <Hero />
+        <section>
+          <h2 className="text-2xl font-bold mb-4">Last 4 Posted Houses</h2>
+          <CardsList cards={[a,b,c,d]} />
+        </section>
+        <section>
+          <h2 className="text-2xl font-bold mb-4">Top 4 Best Rated Houses</h2>
+          <CardsList cards={[f,g,h,i]} />
+        </section>
+      </main>
+    </div>
 );
 
 export default HomePage;

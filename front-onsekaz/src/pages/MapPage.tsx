@@ -3,7 +3,7 @@ import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
 import MarkerClusterGroup from '@changey/react-leaflet-markercluster';
 import axios from "axios";
 import { Annonce } from "../models/annonce";
-import Navbar from "../components/Navbar";
+import Header from "../components/Header";
 
 const MapPage: React.FC = () => {
   const [annonces, setAnnonces] = useState<Annonce[]>([]);
@@ -18,7 +18,7 @@ const MapPage: React.FC = () => {
 
     return (
         <div className="overflow-y-hidden">
-            <Navbar images={[]} />
+            <Header />
             <div className="MapPage h-screen">
                 {/* center on the world with max dezoom */}
                 <MapContainer center={[20, 0]} zoom={3} scrollWheelZoom={true} className="h-full">

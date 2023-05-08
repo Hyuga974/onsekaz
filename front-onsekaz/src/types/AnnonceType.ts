@@ -3,7 +3,8 @@ import { propertyHouse, typeHouse } from "./AnnonceEnum";
 export interface AnnonceT {
     id: number;
     title: String,
-    location: Number,
+    location: String,
+    longitude: Number,
     latitude: Number,
     price: Number,
     rooms_nb: Number,
