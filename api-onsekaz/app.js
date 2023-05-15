@@ -14,7 +14,10 @@ const annonceRouter = require('./routes/annonce');
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -29,6 +32,11 @@ app.use('/profile', authCheckMiddleware, userRouter);
 
 //semi-protected routes
 app.use('/annonces', annonceRouter);
+
+//check user login
+app.get('/auth/status', authCheckMiddleware, (req, res) => {
+    res.status(200).json({ isLoggedIn: true });
+});
 
 app.listen(3000, () => {
     console.log('Server started on port 3000...');

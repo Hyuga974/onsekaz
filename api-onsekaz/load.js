@@ -57,7 +57,7 @@ const createAnnonces = async () => {
             // link to user
             user: users[i]._id,
             // annonce data
-            title: faker.lorem.sentence(),
+            title: faker.commerce.productName(),
             location: faker.address.city(),
             latitude: faker.address.latitude(-20.7, -21.4),
             longitude: faker.address.longitude(55.85, 55.15),
@@ -81,6 +81,48 @@ const createAnnonces = async () => {
     await Annonce.insertMany(annonces);
 }
 
+// create reservations
+const createReservations = async () => {
+    console.log(`Creating reservations...`);
+    const reservations = [];
+    const users = await User.find();
+    const annonces = await Annonce.find();
+    for (let i = 0; i < 50; i++) {
+        const reservation = new Reservation({
+            // link to user
+            user: users[i]._id,
+            // link to annonce
+            annonce: annonces[i]._id,
+            // reservation data
+            start_date: faker.date.between('2021-01-01', '2021-12-31'),
+            end_date: faker.date.between('2021-01-01', '2021-12-31'),
+            customer_nb: faker.datatype.number({ min: 1, max: 10 }),
+        });
+        reservations.push(reservation);
+    }
+    await Reservation.insertMany(reservations);
+}
+
+// create reviews
+const createReviews = async () => {
+    console.log(`Creating reviews...`);
+    const reviews = [];
+    const users = await User.aggregate([
+        { $sample: { size: 50 } }
+     ])
+    const annonces = await Annonce.find();
+    for (let i = 0; i < 50; i++) {
+        const review = new Review({
+            // link to user
+            user: users[i]._id,
+            annonce: annonces[i]._id,
+            score: faker.datatype.number({ min: 1, max: 5 }),
+            content: faker.lorem.paragraph()
+        });
+        reviews.push(review);
+    }
+    await Review.insertMany(reviews);
+}
 
 
 // run
@@ -88,6 +130,8 @@ const run = async () => {
     await emptyCollections();
     await createUsers();
     await createAnnonces();
+    await createReservations();
+    await createReviews();
     db.close();
 }
 

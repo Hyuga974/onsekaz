@@ -14,7 +14,7 @@ const CardItem: React.FC<CardProps> = ({ annonce }) => (
         <div className="card-body items-center text-center">
           <h2 className="card-title">{annonce.title}!</h2>
           <div className="card-actions">
-            <Link to={`/annonce/${annonce.id}`} className="btn btn-primary">
+            <Link to={`/annonce/${annonce._id}`} className="btn btn-primary">
               Voir plus
             </Link>
           </div>

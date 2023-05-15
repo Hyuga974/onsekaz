@@ -1,75 +1,40 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import { Link, useParams } from 'react-router-dom';
-import CardsList from '../components/CardsList';
 import { AnnonceT } from '../types/AnnonceType';
-import Title from '../components/Title';
-import CarouselComponent from '../components/Carousel';
-import { propertyHouse, typeHouse } from '../types/AnnonceEnum';
 import Header from '../components/Header';
 import StarRating from '../components/StarRating';
+import { ReviewT } from '../types/ReviewType';
+import axios from 'axios';
 
-const annonce : AnnonceT = {
-  id : 3,
-  title: "Parenthèse ensoleillée",
-  location: "Les Avirons",
-  longitude: 0,
-  latitude: 0,
-  description: `Situé aux Avirons La Parenthèse Ensoleillée, vous accueille pour votre séjour. Idéalement située à 8 minutes de la plage de l'Etang Salé et 15 minutes du petit village du Tévelave où les amateurs de randonnée et de beaux paysages pourront trouver leurs bonheurs.
-
-  Logement jumelée à celle des propriétaires.
-  Joliment décorée, le logement est moderne, fonctionnel et entièrement privatif. Il dispose d'une grande terrasse et d'un jaccuzzi privé de quoi vous ravir pendant vos vacances.`,
-  price: 90,
-  rooms_nb: 1,
-  beds_nb: 2,
-  br_number: 1,
-  property: propertyHouse.house,
-  type: typeHouse.full_housing,
-  max_customer: 4,
-  photos:[
-    "https://a0.muscache.com/im/pictures/miso/Hosting-704982674479340325/original/76c5f458-8c8f-4f91-8fed-6ca591a55d01.jpeg?im_w=1200",
-    "https://a0.muscache.com/im/pictures/miso/Hosting-704982674479340325/original/d832a3f7-6fa1-4585-bdd4-2d7fe59dbf12.jpeg?im_w=720",
-    "https://a0.muscache.com/im/pictures/miso/Hosting-704982674479340325/original/2b6d7787-944b-4f13-8975-2d59b068cf13.jpeg?im_w=720",
-    "https://a0.muscache.com/im/pictures/miso/Hosting-704982674479340325/original/6e5154f5-021d-4cb0-83d5-dc2d967e1a94.jpeg?im_w=720",
-    "https://a0.muscache.com/im/pictures/miso/Hosting-704982674479340325/original/eaf44297-0130-4f77-8b98-78cbe6fffbe1.jpeg?im_w=1200"
-  ]
-}
-
-interface Props {
-
+interface APIResponseT {
+  annonce: AnnonceT;
+  reviews: ReviewT[];
 }
 
 const DetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  // const [state] = useContext(AnnonceContext);
-  // const annonce = state.annonces.find((n) => n.id === id);
+  const [data, setData] = React.useState<APIResponseT | null>(null);
 
-  const user = {
-    id: '1',
-    email: 'john@example.com',
-    username: 'John Doe',
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get<APIResponseT>(`http://localhost:3000/annonces/${id}`);
+        setData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  const reviews = [
-    {
-      id: '1',
-      user: 'Jane Doe',
-      score: 3,
-      content: 'Great place! I had a wonderful time staying here.',
-    },
-    {
-      id: '2',
-      user: 'Michael',
-      score: 5,
-      content: 'Nice house, but the location is a bit far from the city center.',
-    },
-    {
-      id: '3',
-      user: 'Jane Doe',
-      score: 4,
-      content: 'Great place! I had a wonderful time staying here.',
-    }
-  ];
+    fetchData();
+  }, [id]);
+
+  if (!data) {
+    return <p>Loading...</p>;
+  }
+
+  const annonce = data.annonce;
+  const reviews = data.reviews;
 
   //calculate average score
   const averageScore = reviews.reduce((acc, review) => acc + review.score, 0) / reviews.length;
@@ -115,8 +80,8 @@ const DetailsPage: React.FC = () => {
           <p className="text-xl mb-4">{annonce.location}</p>
           <p className="text-gray-600 mb-4">{annonce.description}</p>
           <section className="my-8">
-            <h2 className="text-2xl font-semibold">Hosted by {user.username}</h2>
-            <p>Email: {user.email}</p>
+            <h2 className="text-2xl font-semibold">Hosted by {annonce.user.username}</h2>
+            <p>Email: {annonce.user.email}</p>
           </section>
           <div className="flex items-center space-x-4 mb-4">
             <div>
@@ -156,10 +121,10 @@ const DetailsPage: React.FC = () => {
         <h2 className="text-2xl font-semibold">Reviews</h2>
         <div className="space-y-4">
           {reviews.map((review) => (
-            <div key={review.id} className="card-bordered w-full mx-auto border-gray-400 rounded-md mt-4">
+            <div key={review._id} className="card-bordered w-full mx-auto border-gray-400 rounded-md mt-4">
               <div className="card-body">
                 <h2 className="card-title">
-                  {review.user} • <StarRating score={review.score} reviewId={review.id} />
+                  {review.user.username} • <StarRating score={review.score} reviewId={review._id} />
                 </h2>
                 <p className="text-sm text-white">
                   {review.content}

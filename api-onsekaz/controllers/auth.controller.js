@@ -47,7 +47,7 @@ exports.login = async (req, res) => {
             res.cookie('access_token', token, { 
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
-                sameSite : 'none'
+                sameSite : 'Lax'
             });
         } else {
             res.status(400).json({ message: 'Invalid credentials' });

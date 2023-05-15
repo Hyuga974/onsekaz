@@ -14,7 +14,7 @@ router.post('/login', function(req, res, next) {
 });
 
 /* GET logout user. */
-router.get('/logout', function(req, res, next) {
+router.post('/logout', function(req, res, next) {
     authController.logout(req, res);
 });
 

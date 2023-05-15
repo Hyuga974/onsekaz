@@ -1,7 +1,9 @@
 import { propertyHouse, typeHouse } from "./AnnonceEnum";
+import { UserT } from "./UserType";
 
 export interface AnnonceT {
-    id: number;
+    _id: string;
+    user: UserT,
     title: String,
     location: String,
     longitude: Number,
