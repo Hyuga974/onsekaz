@@ -23,6 +23,10 @@ const ReservationCard: React.FC<ReservationCardProps> = ({ annonceId, maxPeople 
             customer_nb: numPeople,
         }, { withCredentials: true });
         console.log(response.data);
+        const successMsg = document.getElementById('successMsg');
+        if (successMsg) {
+            successMsg.textContent = 'Reservation created successfully!';
+        }
     } catch (error) {
         const errorMsg = document.getElementById('errorMsg');
         if (errorMsg) {
@@ -37,6 +41,7 @@ const ReservationCard: React.FC<ReservationCardProps> = ({ annonceId, maxPeople 
         <div className="card-body">
             <h2 className="text-2xl mb-4">Make a Reservation</h2>
             <div id="errorMsg" className="text-red-500 mb-4"></div>
+            <div id="successMsg" className='text-green-500 mb-4'></div>
             <div className="mb-4">
                 <label className="label">
                     <span className="label-text">Start Date:</span>

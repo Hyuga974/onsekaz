@@ -7,6 +7,7 @@ import StarRating from '../components/StarRating';
 import { ReviewT } from '../types/ReviewType';
 import axios from 'axios';
 import ReservationCard from '../components/ReservationCard';
+import AuthContext from '../context/AuthContext';
 
 interface APIResponseT {
   annonce: AnnonceT;
@@ -16,6 +17,8 @@ interface APIResponseT {
 const DetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [data, setData] = React.useState<APIResponseT | null>(null);
+
+  const authContext = useContext(AuthContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,26 +52,26 @@ const DetailsPage: React.FC = () => {
           <div className="lg:w-full">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 h-96">
               <div className="relative">
-                <img src={annonce.photos[0]} alt={annonce.title} className="rounded-lg w-full h-96 object-cover" />
+                <img src={'.'+annonce.photos[0]} alt={annonce.title} className="rounded-lg w-full h-96 object-cover" />
               </div>
               <div className="flex flex-col h-96">
                 <div className="flex flex-row h-1/2">
                   <div className="flex-1 p-1 relative">
-                    <img src={annonce.photos[1]} alt={`${annonce.title}-1`}
+                    <img src={'.'+annonce.photos[1]} alt={`${annonce.title}-1`}
                       className="rounded-lg w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 p-1 relative">
-                    <img src={annonce.photos[2]} alt={`${annonce.title}-2`}
+                    <img src={'.'+annonce.photos[2]} alt={`${annonce.title}-2`}
                       className="rounded-lg w-full h-full object-cover" />
                   </div>
                 </div>
                 <div className="flex flex-row h-1/2">
                   <div className="flex-1 p-1 relative">
-                    <img src={annonce.photos[3]} alt={`${annonce.title}-1`}
+                    <img src={'.'+annonce.photos[3]} alt={`${annonce.title}-1`}
                       className="rounded-lg w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 p-1 relative">
-                    <img src={annonce.photos[4]} alt={`${annonce.title}-2`}
+                    <img src={'.'+annonce.photos[4]} alt={`${annonce.title}-2`}
                       className="rounded-lg w-full h-full object-cover" />
                   </div>
                 </div>
@@ -119,9 +122,15 @@ const DetailsPage: React.FC = () => {
                 </p>
               </div>
             </div>
+            { authContext?.isLoggedIn === true ? (
             <div className="flex-1 w-1/3">
               <ReservationCard annonceId={annonce._id} maxPeople={annonce.max_customer} />
             </div>
+            ) : (
+              <div className="flex-1 w-1/3">
+                <p className="text-xl font-bold">You must be logged in to make a reservation</p>
+              </div>
+            )}
           </div>
         </div>
         <section className="my-8">

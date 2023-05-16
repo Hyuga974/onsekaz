@@ -23,6 +23,35 @@ db.once('open', function() {
 
 /* ----- FAKER ----- */
 
+let rentalTitles = [
+    "Spacieuse villa de 4 chambres à Fort-de-France",
+    "Location saisonnière : bungalow en bord de mer à Saint-Denis, La Réunion",
+    "Demeure de charme avec piscine à Basse-Terre, Guadeloupe",
+    "Location longue durée : maison familiale à Nouméa, Nouvelle-Calédonie",
+    "Maisonnette pittoresque au coeur de Saint-Pierre, La Réunion",
+    "Belle demeure coloniale à Papeete, Tahiti",
+    "Location saisonnière : appartement vue mer à Pointe-à-Pitre",
+    "Villa de luxe avec piscine à Saint-Barthélemy",
+    "Maison traditionnelle créole à Saint-Paul, La Réunion",
+    "Appartement T2 à louer à Cayenne, Guyane",
+    "Location vacances : chalet en montagne à Cilaos, La Réunion",
+    "Maison avec jardin tropical à Sainte-Anne, Guadeloupe",
+    "Villa haut standing avec vue imprenable à Saint-Martin",
+    "Location longue durée : appartement T3 à Mamoudzou, Mayotte",
+    "Belle maison de campagne à louer à La Trinité, Martinique",
+    "Maison en bord de plage à Sainte-Marie, La Réunion",
+    "Location saisonnière : villa avec jacuzzi à Saint-François, Guadeloupe",
+    "Demeure de charme en centre-ville de Saint-Joseph, La Réunion",
+    "Location vacances : maisonnette avec vue sur la mer à Les Trois-Îlets, Martinique",
+    "Maison de ville moderne à Le Moule, Guadeloupe",
+    "Location longue durée : appartement spacieux à Dzaoudzi, Mayotte",
+    "Villa de luxe en bord de mer à Saint-Pierre-et-Miquelon",
+    "Appartement de charme au centre de Saint-Louis, La Réunion",
+    "Maison avec terrasse et vue mer à Saint-Leu, La Réunion",
+    "Location saisonnière : bungalow tropical à Sainte-Rose, Guadeloupe"
+  ];
+  
+
 // empty all collections except users
 const emptyCollections = async () => {
     console.log(`Purging collections...`);
@@ -57,7 +86,7 @@ const createAnnonces = async () => {
             // link to user
             user: users[i]._id,
             // annonce data
-            title: faker.commerce.productName(),
+            title: faker.helpers.arrayElement(rentalTitles),
             location: faker.address.city(),
             latitude: faker.address.latitude(-20.7, -21.4),
             longitude: faker.address.longitude(55.85, 55.15),
@@ -70,10 +99,11 @@ const createAnnonces = async () => {
             max_customer: faker.datatype.number({ min: 1, max: 10 }),
             description: faker.lorem.paragraph(),
             photos: [
-                faker.image.imageUrl(),
-                faker.image.imageUrl(),
-                faker.image.imageUrl(),
-                faker.image.imageUrl(),
+                `./src/assets/photos/${faker.datatype.number({ min: 1, max: 14 })}.jpg`,
+                `./src/assets/photos/${faker.datatype.number({ min: 1, max: 14 })}.jpg`,
+                `./src/assets/photos/${faker.datatype.number({ min: 1, max: 14 })}.jpg`,
+                `./src/assets/photos/${faker.datatype.number({ min: 1, max: 14 })}.jpg`,
+                `./src/assets/photos/${faker.datatype.number({ min: 1, max: 14 })}.jpg`
             ],
         });
         annonces.push(annonce);

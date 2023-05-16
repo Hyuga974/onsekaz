@@ -41,10 +41,10 @@ router.get('/', function(req, res, next) {
 });
 
 /* POST Delete reservation */
-router.post('/delete', function(req, res, next) {
-    const foundReservation = Reservation.findById(req.body.id);
-    if (foundReservation.user == req.user) {
-        reservation.delete()
+router.post('/delete', async function(req, res, next) {
+    const foundReservation = await Reservation.findById(req.body.id).populate("user")
+    if (foundReservation.user._id == req.user._id) {
+        foundReservation.deleteOne()
             .then(() => res.json({ message: 'Reservation deleted' }))
             .catch(next);
     } else {

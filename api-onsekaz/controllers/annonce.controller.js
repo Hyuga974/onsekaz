@@ -43,7 +43,7 @@ exports.getFourNewest = async (req, res) => {
 
 exports.getFourBestRated = async (req, res) => {
     try {
-        const reviews = await Review.find().populate('annonce');
+        const reviews = await Review.find().populate('annonce').populate('user', '-password')
 
         const annonces = reviews.sort((a, b) => b.rating - a.rating).slice(0, 4).map(review => review.annonce);
         res.json(annonces);

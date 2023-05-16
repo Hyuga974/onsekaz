@@ -9,15 +9,32 @@ import ReservCard from '../components/ReservCard';
 const ReservationsPage: React.FC = () => {
 
   const [reservations, setReservations] = useState([]);
-  useEffect(() => {
-    const fetchReservations = async () => {
-      const reservationsResponse = await axios(`http://localhost:3000/reservations`, { withCredentials: true });
-      const reservationsData = await reservationsResponse.data;
+
+  const fetchReservations = async () => {
+    const reservationsResponse = await axios(`http://localhost:3000/reservations`, { withCredentials: true });
+    const reservationsData = await reservationsResponse.data;
     setReservations(reservationsData);
-    };
+  };
+
+  useEffect(() => {
 
     fetchReservations();
   }, []);
+
+  const deleteReservation = async (id: string) => {
+    try {
+      const response = await axios.post('http://localhost:3000/reservations/delete', {
+          id: id
+      }, { withCredentials: true });
+      // After a successful delete, refetch the reservations
+      fetchReservations();
+    } catch (error) {
+      const errorMsg = document.getElementById('errorMsg');
+      if (errorMsg) {
+          errorMsg.textContent = error.response.data.message;
+      }
+    }
+  }
 
   console.log(reservations);
 
@@ -30,7 +47,7 @@ const ReservationsPage: React.FC = () => {
         <div className="flex flex-wrap -mx-auto">
             {reservations.map((reservation: any) => (
             <div className="w-full md:w-1/2 lg:w-1/4 px-4 my-2 ">
-                <ReservCard key={reservation.id} reservation={reservation} />
+                <ReservCard key={reservation.id} reservation={reservation} deleteReservation={deleteReservation} />
             </div>
             ))}
         </div>
