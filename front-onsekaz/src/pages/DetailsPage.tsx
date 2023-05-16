@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import StarRating from '../components/StarRating';
 import { ReviewT } from '../types/ReviewType';
 import axios from 'axios';
+import ReservationCard from '../components/ReservationCard';
 
 interface APIResponseT {
   annonce: AnnonceT;
@@ -79,44 +80,50 @@ const DetailsPage: React.FC = () => {
           <h1 className="text-3xl font-bold mb-4">{annonce.title} • <StarRating score={averageScore} reviewId='annonce' /> ({averageScore})</h1>
           <p className="text-xl mb-4">{annonce.location}</p>
           <p className="text-gray-600 mb-4">{annonce.description}</p>
-          <section className="my-8">
-            <h2 className="text-2xl font-semibold">Hosted by {annonce.user.username}</h2>
-            <p>Email: {annonce.user.email}</p>
-          </section>
-          <div className="flex items-center space-x-4 mb-4">
-            <div>
-              <p className="font-bold">{annonce.price}€</p>
-              <p>per night</p>
+          <div className="flex">
+            <div className="w-2/3">
+              <section className="my-8">
+                <h2 className="text-2xl font-semibold">Hosted by {annonce.user.username}</h2>
+                <p>Email: {annonce.user.email}</p>
+              </section>
+              <div className="flex items-center space-x-4 mb-4">
+                <div>
+                  <p className="font-bold">{annonce.price}€</p>
+                  <p>per night</p>
+                </div>
+                <div>
+                  <p className="font-bold">{annonce.rooms_nb}</p>
+                  <p>Rooms</p>
+                </div>
+                <div>
+                  <p className="font-bold">{annonce.beds_nb}</p>
+                  <p>Beds</p>
+                </div>
+                <div>
+                  <p className="font-bold">{annonce.br_number}</p>
+                  <p>Bathrooms</p>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <p>
+                  <span className="font-bold">Property: </span>
+                  {annonce.property}
+                </p>
+                <p>
+                  <span className="font-bold">Type: </span>
+                  {annonce.type}
+                </p>
+                <p>
+                  <span className="font-bold">Max guests: </span>
+                  {annonce.max_customer}
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="font-bold">{annonce.rooms_nb}</p>
-              <p>Rooms</p>
+            <div className="flex-1 w-1/3">
+              <ReservationCard annonceId={annonce._id} maxPeople={annonce.max_customer} />
             </div>
-            <div>
-              <p className="font-bold">{annonce.beds_nb}</p>
-              <p>Beds</p>
-            </div>
-            <div>
-              <p className="font-bold">{annonce.br_number}</p>
-              <p>Bathrooms</p>
-            </div>
-          </div>
-          <div className="space-y-2">
-            <p>
-              <span className="font-bold">Property: </span>
-              {annonce.property}
-            </p>
-            <p>
-              <span className="font-bold">Type: </span>
-              {annonce.type}
-            </p>
-            <p>
-              <span className="font-bold">Max guests: </span>
-              {annonce.max_customer}
-            </p>
           </div>
         </div>
-
         <section className="my-8">
         <h2 className="text-2xl font-semibold">Reviews</h2>
         <div className="space-y-4">

@@ -18,10 +18,14 @@ const handleSubmit = async (e: any) => {
     const url = `http://localhost:3000${endpoint}`; // Replace with your server URL if different
 
     try {
-        const FormData = {
+        let FormData = {
             email: e.target.email.value,
             password: e.target.password.value,
         };
+        if (!isLoginForm) {
+            let obj1 = {username: e.target.username.value};
+            FormData = {...FormData, ...obj1}; 
+        }
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -72,7 +76,7 @@ const handleSubmit = async (e: any) => {
                     </label>
                     <input
                         className="input input-primary w-full"
-                        id="username" type="text" placeholder="Username" />
+                        id="username" type="text" placeholder="Username" name='username' />
                 </div>
                 )}
                 <div className="mb-4">

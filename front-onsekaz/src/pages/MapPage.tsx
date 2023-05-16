@@ -30,7 +30,7 @@ const MapPage: React.FC = () => {
                     <Marker key={annonce._id} position={[annonce.latitude, annonce.longitude]}>
                         <Popup>
                             <div className="p-4">
-                                <h3 className="text-lg font-semibold mb-2">{annonce.title}</h3>
+                                <a className="text-lg font-semibold mb-2" href={`/annonce/${annonce._id}`}>{annonce.title}</a>
                                 <p className="text-gray-700 mb-2">{annonce.location}</p>
                                 <p className="text-gray-700 mb-2">{annonce.max_customer} guests</p>
                                 <p className="text-gray-700 mb-2">

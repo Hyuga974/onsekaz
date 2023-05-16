@@ -2,8 +2,17 @@ const Annonce = require('../models/Annonce');
 const Review = require('../models/Review');
 
 exports.getAllAnnonces = async (req, res) => {
+    const search = req.query.search || '';
+
     try {
-        const annonces = await Annonce.find().populate('user', '-password');
+        const annonces = await Annonce.find({
+            $or: [
+                { title: { $regex: search, $options: 'i' } },
+                { description: { $regex: search, $options: 'i' } },
+                { category: { $regex: search, $options: 'i' } },
+                { location: { $regex: search, $options: 'i' } },
+            ]
+        }).populate('user', '-password');
         res.json(annonces);
     } catch (err) {
         console.log(err);

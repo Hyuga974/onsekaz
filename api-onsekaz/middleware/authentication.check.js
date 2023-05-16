@@ -4,7 +4,7 @@ const authCheck = (req, res, next) => {
     const token = req.cookies.access_token;
     if (!token) {
         res.status(401).json({
-            message: 'Unauthorized'
+            message: 'Unauthorized by middleware'
         });
         return;
     }

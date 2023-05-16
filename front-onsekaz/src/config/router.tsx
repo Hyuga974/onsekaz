@@ -3,6 +3,9 @@ import HomePage from '../pages/HomePage'
 import DetailsPage from '../pages/DetailsPage';
 import MapPage from '../pages/MapPage';
 import AuthPage from '../pages/AuthPage';
+import SearchAdsPage from '../pages/SearchAds';
+import ReservationsPage from '../pages/ReservationsPage';
+import ReviewsPage from '../pages/ReviewsPage';
 
 export const router = createBrowserRouter([
   {
@@ -20,5 +23,17 @@ export const router = createBrowserRouter([
   {
     path: '/connect',
     element: <AuthPage />
-  }
+  },
+  {
+    path: '/annonces',
+    element: <SearchAdsPage />
+  },
+  {
+    path: '/my-reservations',
+    element: <ReservationsPage />
+  },
+  {
+    path: '/my-reviews',
+    element: <ReviewsPage />
+  },
 ]);

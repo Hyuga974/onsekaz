@@ -11,6 +11,8 @@ const indexRouter = require('./routes/index');
 const authentificationRouter = require('./routes/auth');
 const userRouter = require('./routes/user');
 const annonceRouter = require('./routes/annonce');
+const reservRouter = require('./routes/reservation');
+const reviewRouter = require('./routes/review');
 
 const app = express();
 
@@ -29,6 +31,8 @@ app.use('/auth', authentificationRouter);
 
 //protected routes
 app.use('/profile', authCheckMiddleware, userRouter);
+app.use('/reservations', authCheckMiddleware, reservRouter);
+app.use('/reviews', authCheckMiddleware, reviewRouter);
 
 //semi-protected routes
 app.use('/annonces', annonceRouter);
